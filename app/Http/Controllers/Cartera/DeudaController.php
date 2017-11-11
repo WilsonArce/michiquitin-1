@@ -32,10 +32,9 @@ class DeudaController extends Controller
             //Buscar texto de busqueda para filtrar las categorias
             $query=trim($request->get('searchText'));
             $deudas=DB::table('deudas')
-            //->join('facturas as f','fd.id_factura', '=', 'f.id_factura')
             ->select('id_deuda','valor_a_pagar','id_factura','valor_pagado','plazo_credito','estado')
+            ->where('id_factura','LIKE','%'.$query.'%')
             ->where('estado','!=','Pagado')
-            //->orwhere('a.codigo','LIKE','%'.$query.'%')
             ->orderBy('id_deuda','desc')
             ->paginate(7);
              return view('cartera.deuda.index',["deudas"=>$deudas,"searchText"=>$query]);
@@ -137,7 +136,7 @@ class DeudaController extends Controller
     {
         $deudas=Deuda::findOrFail($id);
         $deudas->valor_pagado+=$request->get('abono');
-        if($deudas->valor_pagado == $deudas->valor_a_pagar){
+        if($deudas->valor_pagado >= $deudas->valor_a_pagar){
             $deudas->estado="Pagado";
             $deudas->update();
         }else{

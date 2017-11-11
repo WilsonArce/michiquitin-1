@@ -21,7 +21,7 @@ class PagoController extends Controller
             ->select('id_deuda','valor','created_at')
             //->where('a.nombre','LIKE','%'.$query.'%')
             //->orwhere('a.codigo','LIKE','%'.$query.'%')
-            ->orderBy('id_deuda','desc')
+            ->orderBy('id_pago','desc')
             ->paginate(7);
              return view('cartera.pago.index',["pagos"=>$pagos,"searchText"=>$query]);
        }    	
