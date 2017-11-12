@@ -66,19 +66,21 @@
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu" style="display: none;">
-                  <!--Historial de credito de las personas -->
+                  <!--Historial de credito de las personas listo-->
                   <li class="nav-item">
                     <a href="{{ URL::to('/deuda') }}" class="nav-link ">
                       <i class="fa fa-cogs"></i>
                       <span class="title">Historial crediticio</span>
                     </a>
                   </li>
+                  <!--Historial de pagos de las personas ready-->
                   <li class="nav-item">
                     <a href="{{ URL::to('/pago') }}" class="nav-link ">
                       <i class="fa fa-cogs"></i>
                       <span class="title">Consultar pagos</span>
                     </a>
                   </li>
+                  <!--PLan de pagos de las personas prêt-->
                   <li class="nav-item">
                     <a href="{{ URL::to('/plan_de_pago') }}" class="nav-link ">
                       <i class="fa fa-cogs"></i>
@@ -86,19 +88,15 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ URL::to('/deuda/edit') }}" class="nav-link ">
-                      <i class="fa fa-cogs"></i>
-                      <span class="title">Registrar pago</span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
+                     <!--PLan de pagos de las personas 準備-->
                     <a href="{{ URL::to('/deuda') }}" class="nav-link ">
                       <i class="fa fa-cogs"></i>
                       <span class="title">Generar reporte</span>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ URL::to('/deuda') }}" class="nav-link ">
+                    <!-- 私はそれをやるつもりだ-->
+                    <a href="{{ URL::to('/pago/show') }}" class="nav-link ">
                       <i class="fa fa-cogs"></i>
                       <span class="title">Paz y salvo</span>
                     </a>

@@ -15,10 +15,12 @@ use App\Models\Cartera\Pago;
 use App\Models\Facturacion\Factura;
 use App\Models\Usuarios\Cliente;
 use App\Models\Facturacion\Factura_deuda;
+use App\Models\Cartera\Paz_y_salvo;
 use DB;
 
 
 use Session;
+
 
 class DeudaController extends Controller
 {
@@ -134,11 +136,20 @@ class DeudaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $hoy = date("m.d.y"); 
+        $hora = date("H:i"); 
         $deudas=Deuda::findOrFail($id);
         $deudas->valor_pagado+=$request->get('abono');
         if($deudas->valor_pagado >= $deudas->valor_a_pagar){
             $deudas->estado="Pagado";
             $deudas->update();
+            $paz= new Paz_y_salvo();
+            $paz->concepto="Deuda";
+            $paz->id_deuda=$deudas->id_deuda;
+            $paz->fecha=$hoy;
+            $paz->hora=$hora;
+            $paz->save();
+
         }else{
             $deudas->update();
         }
