@@ -136,8 +136,8 @@ class DeudaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $hoy = date("m.d.y"); 
-        $hora = date("H:i"); 
+            $hoy = date("Y-m-d H:i:s"); 
+            $hora = date("Y-m-d H:i:s"); 
         $deudas=Deuda::findOrFail($id);
         $deudas->valor_pagado+=$request->get('abono');
         if($deudas->valor_pagado >= $deudas->valor_a_pagar){

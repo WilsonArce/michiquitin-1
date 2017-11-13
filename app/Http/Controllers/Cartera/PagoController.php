@@ -7,6 +7,7 @@ use App\Models\Cartera\Pago;
 use App\Http\Controllers\Controller;
 use DB;
 use App\Models\Cartera\Paz_y_salvo;
+use PDF;
 
 
 use Session;
@@ -43,6 +44,19 @@ class PagoController extends Controller
              return view('cartera.pago.show',["paz"=>$paz,"searchText"=>$query]);
        }        
 
+    }
+
+    public function downloadPDF(Request $request, $id){
+        if($request){
+            $paz=DB::table('paz_y_salvos')
+            ->select('id_paz_y_salvo','fecha','hora')
+            ->where('id_paz_y_salvo','LIKE',$id)
+            ->orderBy('id_paz_y_salvo','desc')
+            ->paginate(7);
+             $pdf = PDF::loadView('cartera/pago/pdf',['paz'=>$paz]);
+             return $pdf->download('invoice.pdf');
+       }   
+ 
     }
 
 

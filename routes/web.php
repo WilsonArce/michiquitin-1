@@ -23,4 +23,4 @@ Route::get('deuda/setCliente', 'cartera\DeudaController@setCliente');
 Route::resource('deuda', 'cartera\DeudaController');
 Route::resource('pago', 'cartera\PagoController');
 Route::resource('plan_de_pago', 'cartera\Plan_de_pagoController');
-//Route::get('deuda/{id}/edit','DeudaController@edit');
+Route::get('/downloadPDF/{id}','cartera\PagoController@downloadPDF');

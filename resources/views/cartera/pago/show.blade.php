@@ -25,6 +25,7 @@
                 <td>Fecha de pago</td>
                 <td>Hora de pago</td>
                 <td>Concepto de pago</td>
+                <td>Paz y Salvo</td>
             </tr>
         </thead>
         <tbody>
@@ -35,6 +36,7 @@
                <td>{{ $pa->fecha }}</td>
               <td>{{ $pa->hora }}</td><!--Deuda-->      
               <td>{{ $pa->concepto}}</td>
+              <td><a href="{{URL::action('cartera\PagoController@downloadPDF',$pa->id_paz_y_salvo)}}"><button class="btn btn-warning">Descargar PDF</button></td>
             </tr>
         @endforeach
         </tbody>
