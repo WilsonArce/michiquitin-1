@@ -16,6 +16,7 @@ use App\Models\Facturacion\Factura;
 use App\Models\Usuarios\Cliente;
 use App\Models\Facturacion\Factura_deuda;
 use App\Models\Cartera\Paz_y_salvo;
+use Carbon\Carbon;
 use DB;
 
 
@@ -33,13 +34,16 @@ class DeudaController extends Controller
        if($request){
             //Buscar texto de busqueda para filtrar las categorias
             $query=trim($request->get('searchText'));
+            $date=Carbon::now();
+            $date= $date->addDay();
+            $date=$date->format('Y-m-d');
             $deudas=DB::table('deudas')
             ->select('id_deuda','valor_a_pagar','id_factura','valor_pagado','plazo_credito','estado')
             ->where('id_factura','LIKE','%'.$query.'%')
             ->where('estado','!=','Pagado')
             ->orderBy('id_deuda','desc')
             ->paginate(7);
-             return view('cartera.deuda.index',["deudas"=>$deudas,"searchText"=>$query]);
+             return view('cartera.deuda.index',["deudas"=>$deudas,"searchText"=>$query, "date"=> $date]);
        }
     }
 
@@ -148,6 +152,13 @@ class DeudaController extends Controller
             $hora = date("Y-m-d H:i:s"); 
         $deudas=Deuda::findOrFail($id);
         $deudas->valor_pagado+=$request->get('abono');
+
+        $fecha=$deudas->plazo_credito;
+
+        $fechames=date('Y-m-d',strtotime('+1 month', strtotime($fecha)));
+
+
+        $deudas->plazo_credito=$fechames;
         if($deudas->valor_pagado >= $deudas->valor_a_pagar){
             $deudas->estado="Pagado";
             $deudas->update();
