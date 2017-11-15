@@ -23,6 +23,8 @@ Route::get('/deuda/hcliente','cartera\DeudaController@hcliente');
 Route::get('/pago/hpago','cartera\PagoController@hpago');
 Route::get('/consultas/planes','cartera\ConsultasController@planes');
 Route::get('/consultas/mayor','cartera\ConsultasController@mayor');
+Route::get('/consultas/mdeudas','cartera\ConsultasController@mdeudas');
+
 Route::get('deuda/setCliente', 'cartera\DeudaController@setCliente');
 Route::get('/downloadPDF/{id}','cartera\PagoController@downloadPDF');
 Route::resource('deuda', 'cartera\DeudaController');

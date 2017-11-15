@@ -7,14 +7,14 @@
 @section('content')
 
   <div class="container">
-    <h1>Mayores recaudos</h1>
+    <h1>Días de Mayores recaudos</h1>
   <nav class="navbar navbar-inverse">
       <ul class="nav navbar-nav">
           <li><a href="{{ URL::to('/consultas') }}">Mas consultas</a></li>
-          <li><a href="{{ URL::to('/consultas/otro1') }}">Otro</a></li>
+          <li><a href="{{ URL::to('/consultas/planes') }}">Planes mas solicitados</a></li>
+          <li><a href="{{ URL::to('/consultas/mdeudas') }}">Historico de mayores deudas</a></li>
           <li><a href="{{ URL::to('/consultas/otro2') }}">Otro</a></li>
           <li><a href="{{ URL::to('/consultas/otro3') }}">Otro</a></li>
-          <li><a href="{{ URL::to('/consultas/otro4') }}">Otro</a></li>
       </ul>
   </nav>
 
@@ -35,10 +35,10 @@
             </tr>
         </thead>
         <tbody>
-          <?php $a = 5; ?>
+          <?php $a = 1; ?>
         @foreach($fecha as $fec)
             <tr>
-              <td>Puesto No. {{$a}} <?php $a--; ?></td>
+              <td>Puesto No. {{$a}} <?php $a++; ?></td>
               <td>No. {{ $fec->sumatotal }}</td>
               <td>{{ $fec->created_at }}</td>
           </tr>

@@ -7,14 +7,14 @@
 @section('content')
 
   <div class="container">
-    <h1>Planes</h1>
+    <h1>Historico de Mayores deudas</h1>
   <nav class="navbar navbar-inverse">
       <ul class="nav navbar-nav">
           <li><a href="{{ URL::to('/consultas') }}">Mas consultas</a></li>
-          <li><a href="{{ URL::to('/consultas/mdeudas') }}">Historico de mayores deudas</a></li>
+          <li><a href="{{ URL::to('/consultas/mayor') }}">Dias de mayor recaudo</a></li>
           <li><a href="{{ URL::to('/consultas/planes') }}">Planes mas solicitados</a></li>
+          <li><a href="{{ URL::to('/consultas/otro2') }}">Otro</a></li>
           <li><a href="{{ URL::to('/consultas/otro3') }}">Otro</a></li>
-          <li><a href="{{ URL::to('/consultas/otro4') }}">Otro</a></li>
       </ul>
   </nav>
 
@@ -30,17 +30,19 @@
         <thead>
             <tr>
                 <td>Posición</td>
-                <td>Número de plan</td>
-                <td>Duración del plan</td>
+                <td>Número de deuda</td>
+                <td>Valor total</td>
+                <td>Estado de la deuda</td>
             </tr>
         </thead>
         <tbody>
-          <?php $a = 3; ?>
-        @foreach($plan as $pla)
+          <?php $a = 1; ?>
+        @foreach($deudas as $deuda)
             <tr>
-              <td>Puesto No. {{$a}} <?php $a--; ?></td>
-              <td>No. {{ $pla->id_plan_de_pago }}</td>
-              <td>{{ $pla->nombre_plan }}</td>
+              <td>{{$a}} <?php $a++; ?></td>
+              <td>No. Deuda {{ $deuda->id_deuda}}</td>
+              <td>{{ $deuda->valor_a_pagar }}</td>
+              <td>{{ $deuda->estado }}</td>
           </tr>
         @endforeach
         </tbody>

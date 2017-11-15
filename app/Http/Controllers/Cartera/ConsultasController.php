@@ -7,6 +7,7 @@ use App\Models\Facturacion\Factura;
 use App\Http\Controllers\Controller;
 use App\Models\Cartera\Plan_de_pago;
 use App\Models\Cartera\Pago;
+use App\Models\Cartera\Deuda;
 use DB;
 
 class ConsultasController extends Controller
@@ -32,7 +33,16 @@ class ConsultasController extends Controller
     	->select('id_deuda',DB::raw('SUM(valor) as sumatotal'),'created_at')
     	->groupBy('created_at')
     	->orderBy('sumatotal','desc')
-    	->paginate(7);
+    	->paginate(5);
     	return view('cartera.consultas.mayor',['fecha' => $fecha]);
     } 
+
+    public function mdeudas(){
+     	$deudas=DB::table('deudas')
+    	->select('id_deuda','valor_a_pagar','estado')
+    	//->groupBy('created_at')
+    	->orderBy('valor_a_pagar','desc')
+    	->paginate(5);
+    	return view('cartera.consultas.mdeudas',['deudas' => $deudas]);   	
+    }
 }
