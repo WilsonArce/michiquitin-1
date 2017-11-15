@@ -43,6 +43,19 @@ class DeudaController extends Controller
        }
     }
 
+    public function hcliente(Request $request){
+       if($request){
+            $query=trim($request->get('searchText'));
+            $deudas=DB::table('deudas')
+            ->select('id_deuda','valor_a_pagar','id_factura','estado')
+            ->where('id_factura','LIKE','%'.$query.'%')
+            ->orderBy('id_deuda','desc')
+            ->paginate(7);
+             return view('cartera.deuda.hcliente',["deudas"=>$deudas,"searchText"=>$query]);
+       }
+    } 
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -107,14 +120,9 @@ class DeudaController extends Controller
      * @param  \App\Models\Cartera\Deuda  $deuda
      * @return \Illuminate\Http\Response
      */
-    public function show(Deuda $deuda)
-    {
-        //
-        $deuda = Deuda::find($deuda->id_deuda);
+    public function show(Request $request){
 
-        return view('cartera.deuda.show', compact('deuda'));
-        
-    }
+    } 
 
     /**
      * Show the form for editing the specified resource.

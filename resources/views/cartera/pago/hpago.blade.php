@@ -7,12 +7,12 @@
 @section('content')
   <div class="container">
 
-  <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse">
       <ul class="nav navbar-nav">
-          <li><a href="{{ URL::to('/pago/hpago?searchText=n') }}">Pago de un cliente</a>
+          <li><a href="{{ URL::to('pago') }}">Todos los pagos</a></li>
       </ul>
-  </nav> 
-  <h1>Todos los pagos</h1>
+  </nav>
+  <h1>Busca el pago del cliente</h1>
   @include('cartera.pago.per')
   <div class="col-lg-12">
 
@@ -40,6 +40,7 @@
         @endforeach
         </tbody>
     </table>
+
   </div>
   </div>
 @endsection

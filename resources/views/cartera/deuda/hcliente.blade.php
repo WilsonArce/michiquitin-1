@@ -10,11 +10,10 @@
     <nav class="navbar navbar-inverse">
       <ul class="nav navbar-nav">
           <li><a href="{{ URL::to('deuda') }}">Todos los creditos</a></li>
-          <li><a href="{{ URL::to('deuda/show') }}">Credito de un cliente</a>
       </ul>
   </nav>
-  <h1>Todos los créditos</h1>
-  @include('cartera.deuda.search')
+  <h1>Busca el cliente</h1>
+  @include('cartera.deuda.per')
   <div class="col-lg-12">
 
     <!-- will be used to show any messages -->
@@ -27,11 +26,8 @@
             <tr>
                 <td>Cliente</td>
                 <td>Factura</td>
-                <td>Valor pagado</td>
                 <td>Valor a pagar</td>
-                <td>Plazo crédito</td>
                 <td>Estado</td>
-                <td>Realizar Pago</td>
                 <!--<td colspan="2"></td>-->
             </tr>
         </thead>
@@ -40,16 +36,8 @@
             <tr>
               <td>Nombre usuario</td>
               <td>{{ $deuda->id_factura }}</td>
-              <td>{{ $deuda->valor_pagado }}</td><!--Deuda-->
-               <td>{{ $deuda->valor_a_pagar }}</td>
-              <td>{{ $deuda->plazo_credito }}</td><!--Deuda-->      
+               <td>{{ $deuda->valor_a_pagar }}</td>    
               <td>{{ $deuda->estado}}</td>
-              <td><a href="{{URL::action('cartera\DeudaController@edit',$deuda->id_deuda)}}"><button class="btn btn-warning">Pagar</button></td>
-                  
-                  
-
-
-
             </tr>
         @endforeach
         </tbody>
