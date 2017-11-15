@@ -101,6 +101,13 @@
                       <span class="title">Paz y salvo</span>
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <!-- Путо тот, который переводит его-->
+                    <a href="{{ URL::to('/consultas') }}" class="nav-link ">
+                      <i class="fa fa-cogs"></i>
+                      <span class="title">Consultas</span>
+                    </a>
+                  </li>
                 </ul>
             </li>
 
