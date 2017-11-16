@@ -41,8 +41,8 @@
               <td>{{ $deuda->id_factura }}</td>
               <td>{{ $deuda->valor_pagado }}</td><!--Deuda-->
                <td>{{ $deuda->valor_a_pagar }}</td>
-              <td><?php if($date > $deuda->plazo_credito){
-              echo "En mora";  ?>  <a href="{{ URL::to('/deuda/hcliente?searchText=n') }}">Credito de un cliente</a> <?php }else{ 
+              <td><?php if($date > $deuda->plazo_credito && $deuda->estado != "En mora"){
+               echo $deuda->plazo_credito; ?> <a href="{{URL::action('cartera\DeudaController@mora',$deuda->id_deuda)}}">En mora</a>  <?php }else{ 
                  echo $deuda->plazo_credito;}
               ?></td><!--Deuda-->      
               <td>{{ $deuda->estado}}</td>

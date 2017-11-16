@@ -35,7 +35,7 @@ class DeudaController extends Controller
             //Buscar texto de busqueda para filtrar las categorias
             $query=trim($request->get('searchText'));
             $date=Carbon::now();
-            $date= $date->addDay();
+            //$date= $date->addDay();
             $date=$date->format('Y-m-d');
             $deudas=DB::table('deudas')
             ->select('id_deuda','valor_a_pagar','id_factura','valor_pagado','plazo_credito','estado')
@@ -45,6 +45,17 @@ class DeudaController extends Controller
             ->paginate(7);
              return view('cartera.deuda.index',["deudas"=>$deudas,"searchText"=>$query, "date"=> $date]);
        }
+    }
+
+    public function mora($id){
+        $deudas=Deuda::findOrFail($id);
+        $deudas->estado="En mora";
+        $deudas->valor_a_pagar=$deudas->valor_a_pagar*(1.1);
+        $deudas->update();
+
+        return Redirect::to('deuda');
+
+
     }
 
     public function hcliente(Request $request){
@@ -152,6 +163,7 @@ class DeudaController extends Controller
             $hora = date("Y-m-d H:i:s"); 
         $deudas=Deuda::findOrFail($id);
         $deudas->valor_pagado+=$request->get('abono');
+        $deudas->estado="Pendiente";
 
         $fecha=$deudas->plazo_credito;
 
