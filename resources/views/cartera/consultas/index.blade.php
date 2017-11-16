@@ -23,8 +23,6 @@
                 <td><a href="{{ URL::to('/consultas/planes') }}">Planes mas solicitados</a></td>
                 <td><a href="{{ URL::to('/consultas/mayor') }}">Dias de mayor recaudo</a></td>
                 <td><a href="{{ URL::to('/consultas/mdeudas') }}">Historico de mayores deudas</a></td>
-                <td><a href="{{ URL::to('/consultas/otro3') }}">Otro</a></td>
-                <td><a href="{{ URL::to('/consultas/otro4') }}">Otro</a></td>
             </tr>
         </thead>
     </table>

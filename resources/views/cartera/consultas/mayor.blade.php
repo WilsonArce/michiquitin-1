@@ -13,8 +13,6 @@
           <li><a href="{{ URL::to('/consultas') }}">Mas consultas</a></li>
           <li><a href="{{ URL::to('/consultas/planes') }}">Planes mas solicitados</a></li>
           <li><a href="{{ URL::to('/consultas/mdeudas') }}">Historico de mayores deudas</a></li>
-          <li><a href="{{ URL::to('/consultas/otro2') }}">Otro</a></li>
-          <li><a href="{{ URL::to('/consultas/otro3') }}">Otro</a></li>
       </ul>
   </nav>
 
