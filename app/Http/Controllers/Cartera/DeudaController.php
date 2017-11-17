@@ -37,8 +37,9 @@ class DeudaController extends Controller
             $date=Carbon::now();
             //$date= $date->addDay();
             $date=$date->format('Y-m-d');
-            $deudas=DB::table('deudas')
-            ->select('id_deuda','valor_a_pagar','id_factura','valor_pagado','plazo_credito','estado')
+            $deudas=DB::table('deudas as d')
+            ->join('users as u','d.id_usuario','=','u.id')
+            ->select('d.id_deuda','d.valor_a_pagar','d.id_factura','d.valor_pagado','d.plazo_credito','d.estado','u.id_tipo','u.name')
             ->where('id_factura','LIKE','%'.$query.'%')
             ->where('estado','!=','Pagado')
             ->orderBy('id_deuda','desc')
