@@ -65,8 +65,9 @@ class PagoController extends Controller
 
     public function downloadPDF(Request $request, $id){
         if($request){
-            $paz=DB::table('paz_y_salvos')
-            ->select('id_paz_y_salvo','fecha','hora', 'id_deuda')
+            $paz=DB::table('paz_y_salvos as ps')
+            ->join('deudas as d','ps.id_deuda', '=','d.id_deuda')
+            ->select('ps.id_paz_y_salvo','ps.fecha','ps.hora', 'd.id_deuda','d.valor_a_pagar')
             ->where('id_paz_y_salvo','LIKE',$id)
             ->orderBy('id_paz_y_salvo','desc')
             ->paginate(7);
