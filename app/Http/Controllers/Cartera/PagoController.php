@@ -26,7 +26,8 @@ class PagoController extends Controller
                 $data = User::whereId($user_id)->with('deuda.pagos')->get();
                 //$deudas=Deuda::where('id_usuario', $user_id)->get();
                 //$pagos = Deuda::where('id_usuario', $user_id)->get();
-                $pagos=$data[0]->deuda->where('id_usuario','LIKE',$query);
+                //$pagos=$data[0]->deuda->where('id_usuario','LIKE',$query);
+		$pagos = $data[0]->deuda->pagos;
             }            
              return view('cartera.pago.index',["pagos"=>$pagos,'searchText'=>$query]);
        }
