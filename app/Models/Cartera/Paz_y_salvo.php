@@ -13,6 +13,6 @@ class Paz_y_salvo extends Model
 
   public function deuda()
   {
-    return $this->belongsTo('App\Models\Cartera\Deuda');
+    return $this->belongsTo('App\Models\Cartera\Deuda','id_deuda');
   }
 }

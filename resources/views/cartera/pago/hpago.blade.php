@@ -24,6 +24,8 @@
     <table class="table table-striped table-bordered">
         <thead>
             <tr>
+                <td>ID. Cliente</td>
+                <td>Nombre Usuario</td> 
                 <td>id_deuda</td>
                 <td>Pago</td>
                 <td>Fecha de pago</td>
@@ -33,6 +35,8 @@
         <tbody>
         @foreach($pagos as $pag)
             <tr>
+              <td>{{ $pag->deuda->user->id_tipo }}</td>
+              <td>{{ $pag->deuda->user->name }}</td>              
               <td>{{ $pag->id_deuda }}</td>
               <td>{{ $pag->valor }}</td><!--Deuda-->
                <td>{{ $pag->created_at }}</td>

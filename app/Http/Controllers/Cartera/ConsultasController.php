@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Cartera\Plan_de_pago;
 use App\Models\Cartera\Pago;
 use App\Models\Cartera\Deuda;
+
 use DB;
 
 class ConsultasController extends Controller
@@ -38,11 +39,7 @@ class ConsultasController extends Controller
     } 
 
     public function mdeudas(){
-     	$deudas=DB::table('deudas')
-    	->select('id_deuda','valor_a_pagar','estado')
-    	//->groupBy('created_at')
-    	->orderBy('valor_a_pagar','desc')
-    	->paginate(5);
+        $deudas=Deuda::all()->sortByDesc('valor_a_pagar');
     	return view('cartera.consultas.mdeudas',['deudas' => $deudas]);   	
     }
 }
